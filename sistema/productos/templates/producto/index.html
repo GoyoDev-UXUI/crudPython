@@ -1,0 +1,57 @@
+{% extends "../paginas/base.html"%} 
+{% block titulo %} Listar de productos {% endblock %}
+{% block contenido %}
+<br>
+<div class="card">
+  <div class="card-header"><h5>Lista de productos</h5></div> 
+  <div class="card-body">
+    <a class="btn btn-primary mb-3" href="{% url 'crear' %}" role="button"
+    >Agregar producto</a>
+    <div class="table-responsive">
+          <table class="table table-bordered table table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>DESCRIPCION</th>
+                <th>CANTIDAD</th>
+                <th>IMAGEN</th>
+                <th>ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for producto in productos %}
+              <tr class="table-light">
+                <td>{{producto.id}}</td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.cantidad}}</td>
+                <td>
+                  <img src="{{producto.imagen.url}}" height="56" alt="">
+                </td>
+                <td>
+              <a
+                name=""
+                id=""
+                class="btn btn-success btn-sm"
+                href="{% url 'editar' producto.id %}"
+                role="button"
+                >Editar</a>
+              |
+              <a
+                name=""
+                id=""
+                class="btn btn-danger btn-sm"
+                href="{% url 'eliminar' producto.id %}"
+                role="button"
+                >Borrar</a>
+                </td>
+              </tr>
+            {%endfor%}
+            </tbody>
+          </table>
+        </div>
+  </div>
+</div>
+{% endblock %}
